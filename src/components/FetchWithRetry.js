@@ -1,37 +1,109 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const FetchWithRetry = () => {
-  const [error, setError] = useState(false);
-  const [data, setData] = useState(null);
+// Spinner Component
+const Spinner = () => (
+  <div className="spinner">
+    <div className="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+);
 
-  const fetchData = async () => {
-    try {
-      setError(false);
-      const response = await fetch('https://jsonplaceholder.typicode.com/invalid-endpoint');
-      if (!response.ok) {
-        throw new Error('Failed to fetch data');
-      }
-      const result = await response.json();
-      setData(result);
-    } catch (err) {
-      setError(true);
-    }
+const FetchData = () => {
+  const [userData, setUserData] = useState(null);
+  const [postData, setPostData] = useState(null);
+  const [loadingUsers, setLoadingUsers] = useState(false);
+  const [loadingPosts, setLoadingPosts] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Function to fetch user data
+  const fetchUsers = () => {
+    setLoadingUsers(true);
+    setError(null); // Reset any previous errors
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUserData(data);
+        setLoadingUsers(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoadingUsers(false);
+      });
   };
 
+  // Function to fetch post data
+  const fetchPosts = () => {
+    setLoadingPosts(true);
+    setError(null); // Reset any previous errors
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch posts');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPostData(data);
+        setLoadingPosts(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoadingPosts(false);
+      });
+  };
+
+  // Fetch data on component mount using useEffect
+  useEffect(() => {
+    fetchUsers();
+    fetchPosts();
+  }, []);
+
   return (
-    <div className="fetch-with-retry">
-      {error ? (
+    <div>
+      <h2>Users List</h2>
+      {loadingUsers && <Spinner />} {/* Show loading spinner while loading users */}
+      {error && !loadingUsers && (
         <div>
-          <p>Error fetching data. Please try again.</p>
-          <button onClick={fetchData}>Retry</button>
+          <p>Error: {error}</p>
+          <button onClick={fetchUsers}>Retry Users Fetch</button>
         </div>
-      ) : data ? (
-        <p>Data fetched successfully!</p>
-      ) : (
-        <button onClick={fetchData}>Fetch Data</button>
+      )}
+      {!loadingUsers && !error && userData && (
+        <ul>
+          {userData.map((user) => (
+            <li key={user.id}>
+              {user.name} - {user.email}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <h2>Posts List</h2>
+      {loadingPosts && <Spinner />} {/* Show loading spinner while loading posts */}
+      {error && !loadingPosts && (
+        <div>
+          <p>Error: {error}</p>
+          <button onClick={fetchPosts}>Retry Posts Fetch</button>
+        </div>
+      )}
+      {!loadingPosts && !error && postData && (
+        <ul>
+          {postData.map((post) => (
+            <li key={post.id}>{post.title}</li>
+          ))}
+        </ul>
       )}
     </div>
   );
 };
 
-export default FetchWithRetry;
+export default FetchData;
