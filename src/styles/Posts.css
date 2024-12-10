@@ -1,0 +1,31 @@
+.posts-list {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+  
+  .post-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .post-card h3 {
+    font-size: 1.5rem;
+    color: #34495e;
+  }
+  
+  .post-card p {
+    color: #7f8c8d;
+    line-height: 1.6;
+  }
+  

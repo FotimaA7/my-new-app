@@ -1,0 +1,24 @@
+.header {
+  background: linear-gradient(135deg, #34a0a4, #52b788); /* Same green tones as MainPage */
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; /* Adds rounded corners for consistency */
+}
+
+.header h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for better visibility */
+}
+
+.header p {
+  font-size: 1.2rem;
+  margin: 10px 0 0;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Shadow for subheading text */
+}

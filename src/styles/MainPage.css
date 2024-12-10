@@ -1,0 +1,48 @@
+/* Container for the navigation links */
+.navigation-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 20px;
+  }
+  
+  /* Individual navigation cards */
+  .nav-card {
+    background: linear-gradient(135deg, #34a0a4, #52b788); /* Cool green tones */
+    color: white;
+    padding: 20px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 180px; /* Ensures cards have a uniform width */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  }
+  
+  /* Hover effects for navigation cards */
+  .nav-card:hover {
+    transform: scale(1.05); /* Slight scaling effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #52b788, #76c893); /* Brighter green shades on hover */
+  }
+  
+  /* Title in the navigation section */
+  .navigation-links h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #343a40; /* Dark gray for better readability */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  /* For smaller screens */
+  @media (max-width: 768px) {
+    .nav-card {
+      width: 100%; /* Makes cards full-width on smaller devices */
+      padding: 15px 20px;
+    }
+  }
+  

@@ -1,0 +1,13 @@
+.infinite-scroll-posts ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .infinite-scroll-posts li {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: #fff;
+  }
+  
